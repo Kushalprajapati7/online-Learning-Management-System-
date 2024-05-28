@@ -1,0 +1,86 @@
+
+Let's design a more complex backend task involving an online Learning Management System (LMS). This system will manage courses, 
+instructors, students, and enrollments. Here are the requirements for your backend task:
+
+Learning Management System (LMS) Backend Task
+
+-->Overview
+
+Design and implement a backend system for an online Learning Management System (LMS) that includes CRUD operations for multiple tables. 
+The system should handle the following entities: Courses, Instructors, Students, Enrollments, 
+and Assignments. 
+Additionally, it should support features like authentication, authorization, and advanced querying.
+
+Entities and Relationships
+
+*Courses
+ID (Primary Key)
+Title
+Description
+InstructorID (Foreign Key)
+Duration
+StartDate
+EndDate
+
+*Instructors
+ID (Primary Key)
+Name
+Email
+Department
+Bio
+
+*Students
+ID (Primary Key)
+Name
+Email
+Major
+EnrollmentDate
+
+*Enrollments
+ID (Primary Key)
+CourseID (Foreign Key)
+StudentID (Foreign Key)
+EnrollmentDate
+Status (Enrolled, Completed, Dropped)
+
+*Assignments
+
+ID (Primary Key)
+CourseID (Foreign Key)
+Title
+Description
+DueDate
+
+**Features
+
+*Authentication and Authorization
+
+Implement user authentication for Instructors and Students using JWT.
+Role-based access control: Only Instructors can create/edit Courses and Assignments, while Students can enroll in Courses and submit Assignments.
+
+*CRUD Operations
+
+Courses: Create, Read, Update, Delete
+Instructors: Create, Read, Update, Delete
+Students: Create, Read, Update, Delete
+Enrollments: Create, Read, Update, Delete
+Assignments: Create, Read, Update, Delete
+
+**Advanced Queries
+
+List all Courses with the number of enrolled Students.
+List all Assignments for a given Course.
+Get the Enrollment status for a specific Student across all Courses.
+Get the list of Courses taught by a specific Instructor.
+Validations and Constraints
+
+Ensure no overlapping course durations for a given Instructor.
+Validate email formats for Instructors and Students.
+Ensure that Enrollment status transitions follow a logical order (e.g., cannot move directly from Enrolled to Dropped without 
+passing through Completed).
+
+**Additional Features
+
+Pagination for listing endpoints (e.g., list of Courses, list of Students).
+Sorting and filtering capabilities for various lists (e.g., Courses by start date, Students by enrollment date).
+Search functionality for Courses and Students.
