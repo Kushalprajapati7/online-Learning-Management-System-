@@ -20,6 +20,12 @@ class AssignmentServices {
     deleteAssignment = async(assignmetId:string):Promise<void> =>{
         await AssignmentModel.findByIdAndDelete(assignmetId);
     }
+
+    getAllAssignments = async():Promise<IAssignments[]> =>{
+        const assignments:any = await AssignmentModel.find();
+        return assignments;
+    }               
+
 }
 
 export default new AssignmentServices();

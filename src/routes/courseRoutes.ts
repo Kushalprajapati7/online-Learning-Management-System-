@@ -10,5 +10,6 @@ router.put('/update/:id', verifyToken, authorizeInstructor, courseController.upd
 router.delete('/delete/:id', verifyToken, authorizeInstructor, courseController.deleteCourse);
 router.get('/ListOfCourses', verifyToken, authorizeInstructor, courseController.coursesByInstructor);
 router.get('/allCourses', verifyToken, authorizeStudent, courseController.allCourse);
+router.get('/', verifyToken, authorizeInstructor, courseController.getCourse);
 
 export default router;

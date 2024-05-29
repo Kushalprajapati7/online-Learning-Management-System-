@@ -1,10 +1,10 @@
 import { IAssignments } from "../interface/AssignmentsInterface";
 import assignmentServices from "../services/assignmentServices";
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import courseService from "../services/courseService";
 import CustomRequest from "../types/customRequest";
 class AssignmentConroller {
-    addAssignment = async (req: Request, res: Response): Promise<void> => {
+    addAssignment = async (req: Request, res: Response, next:NextFunction): Promise<void> => {
         try {
             const assignmentData: IAssignments = req.body;
             const instructor = (req as CustomRequest).userId;
@@ -29,12 +29,12 @@ class AssignmentConroller {
             }
 
 
-        } catch (error: any) {
-            res.status(500).json({ message: error.message })
+        } catch (error) {
+            next(error)
         }
     }
 
-    updateAssignment = async (req: Request, res: Response): Promise<void> => {
+    updateAssignment = async (req: Request, res: Response,next:NextFunction): Promise<void> => {
         try {
             const assignmentId = req.params.id;
             const assignmentData: IAssignments = req.body;
@@ -60,11 +60,11 @@ class AssignmentConroller {
             }
 
 
-        } catch (error: any) {
-            res.status(500).json({ message: error.message })
+        } catch (error) {
+            next(error)
         }
     }
-    deleteAssignment =async (req: Request, res: Response): Promise<void> => {
+    deleteAssignment =async (req: Request, res: Response, next:NextFunction): Promise<void> => {
         try {
             const assignmentId = req.params.id;
 
@@ -96,10 +96,12 @@ class AssignmentConroller {
             }
 
 
-        } catch (error: any) {
-            res.status(500).json({ message: error.message })
+        } catch (error) {
+            next(error)
         }
     }
+
+    
 
 }
 export default new AssignmentConroller()

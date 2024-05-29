@@ -3,17 +3,46 @@ import { IInstructors } from "../interface/InstructorsInterface";
 
 const InstructorsSchema = new Schema(
     {
-        name:{type:String, required:true},
-        email:{type:String, required:true},
-        password:{type:String, required:true},
-        department:{type:String, required:true},
-        bio:{type:String, required:true},
-        role: { type: String, required: true, enum: ['instructor'] }
+        name: {
+            type: String,
+            required: [true, "Name is required"],
+            trim: true,
+            minlength: [3, "Please enter name with at least 3 characters"]
+        },
+        email: {
+            type: String,
+            required: [true, "Email is required"],
+            unique: true,
+            trim: true,
+            match: [/.+\@.+\..+/, "Please fill a valid email address"]
+        },
+        password: {
+            type: String,
+            required: [true, "Password is required"],
+            minlength: [4, "Password must be at least 4 characters long"]
+        },
+        department: {
+            type: String,
+            required: [true, "Department is required"],
+            trim: true
+        },
+        bio: {
+            type: String,
+            required: [true, "Bio is required"],
+        },
+        role: {
+            type: String,
+            required: true,
+            enum: {
+                values: ['instructor'],
+                message: '{VALUE} is not supported'
+            }
+        }
     },
     {
-        timestamps:true
+        timestamps: true
     }
 )
 
-const InstructorsModel = mongoose.model<IInstructors>('Instructor',InstructorsSchema)
+const InstructorsModel = mongoose.model<IInstructors>('Instructor', InstructorsSchema)
 export default InstructorsModel;

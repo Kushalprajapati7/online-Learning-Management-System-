@@ -1,4 +1,4 @@
-import EnrollmentModel from "../models/enrollmentModel";
+import EnrollmentModel from "../models/EnrollmentModel";
 import { IEnrollment } from "../interface/EnrollmentInterface";
 
 class EnrollmentServices{

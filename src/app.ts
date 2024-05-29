@@ -7,6 +7,7 @@ import authroutes from './routes/authRoutes'
 import courseRoutes from './routes/courseRoutes'
 import enrollmentRoutes from './routes/enrollmentRoutes'
 import assignmentRoutes from './routes/assignmentRoutes'
+import ErrorHandler from "./middleware/ErrorHandler";
 
 dotenv.config();
 const app = express();
@@ -15,17 +16,22 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 
 
-app.use('/api/student', studentRoutes)
+app.use('/api/student',studentRoutes)
 app.use('/api/instructor', instructorRoutes)
-app.use('/api/login',authroutes)
-app.use('/api/course',courseRoutes)
-app.use('/api/enrollment',enrollmentRoutes)
-app.use('/api/assignment',assignmentRoutes)
+app.use('/api/login', authroutes)
+app.use('/api/course', courseRoutes)
+app.use('/api/enrollment', enrollmentRoutes)
+app.use('/api/assignment', assignmentRoutes)
+
+app.use(ErrorHandler);
 
 
-connectDB();
+connectDB().then(() => {
 
-app.listen(port, ()=>{
-    console.log(`server is On`);
-    
-})
+    app.listen(port, () => {
+        console.log(`server is On`);
+
+    })
+}).catch((error: any) => {
+    console.log("Error starting server :", error.message);
+});

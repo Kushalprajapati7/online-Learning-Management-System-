@@ -23,7 +23,7 @@ async function verifyToken(req: Request, res: Response, next: NextFunction): Pro
             
             next();
     } catch (error) {
-        res.status(500).json({ error: "Token Has been Expired !" });
+       next(error);
     }
 }
 

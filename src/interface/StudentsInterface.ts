@@ -8,5 +8,4 @@ export interface IStudents {
     major: string;
     enrollmentDate: Date;
     role:'student';
-    updatedBy?: Types.ObjectId;
 }
