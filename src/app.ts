@@ -26,8 +26,8 @@ app.use('/api/assignment', assignmentRoutes)
 app.use(ErrorHandler);
 
 
-connectDB().then(() => {
 
+connectDB().then(() => {
     app.listen(port, () => {
         console.log(`server is On`);
 

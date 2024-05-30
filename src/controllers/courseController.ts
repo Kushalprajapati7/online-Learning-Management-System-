@@ -116,7 +116,6 @@ next(error)
             res.status(200).json(instructor)
         } catch (error) {
             next(error)
-
         }
     }
 

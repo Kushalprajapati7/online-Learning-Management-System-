@@ -1,11 +1,15 @@
 import CourseModel from "../models/CourseModel";
 import { ICourse } from "../interface/CoursesInterface";
 import { pipe } from "pdfkit";
+import PermissionModel from "../models/PermissionModel";
+
 
 class CourseServices {
     createCourse = async (courseData: ICourse): Promise<ICourse> => {
         const newCourse = new CourseModel(courseData);
+        
         return await newCourse.save();
+
     }
 
     updateCourse = async (courseId: string, courseData: ICourse): Promise<ICourse> => {
